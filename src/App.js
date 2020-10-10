@@ -1,45 +1,27 @@
 import React from "react";
+import { HashRouter, Route } from "react-router-dom";
+import About from "./routes/About";
+import Home from "./routes/Home";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log("hello");
-  }
+function App() {
+  return (
+    <HashRouter>
+      <Route path="/" exact={true} component={Home} />
+      {/* exact는 / 에서만! 다른 데서는 nope */}
+      <Route path="/about" component={About} />
+      {/* 렌더링 할 스크린, 뭘할지 정해주는 props */}
 
-  //바꿀 데이터를 state에
-  state = {
-    count: 0,
-  };
-  add = () => {
-    this.setState((current) => ({ count: current.count + 1 }));
-  };
-
-  minus = () => {
-    this.setState((current) => ({ count: current.count - 1 }));
-  };
-
-  componentDidMount() {
-    console.log("componenet rendered");
-  }
-
-  componentDidUpdate() {
-    console.log("I just updated");
-  }
-
-  componentWillUnmount() {
-    console.log("Goodbye, cruel world");
-  }
-
-  render() {
-    console.log("I'm rendering");
-    return (
-      <div>
-        <h1>The number is: {this.state.count}</h1>
-        <button onClick={this.add}>Add</button>
-        <button onClick={this.minus}>Minus</button>
-      </div>
-    );
-  }
+      {/* <Route path="/home">
+        <h1>Home</h1>
+      </Route>
+      <Route path="/home/introduction">
+        <h1>Introduction</h1>
+      </Route>
+      <Route path="/about">
+        <h1>About</h1>
+      </Route> */}
+    </HashRouter>
+  );
 }
 
 export default App;
